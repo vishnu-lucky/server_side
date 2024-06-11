@@ -5,9 +5,7 @@ const cors = require('cors');
 
 
 const authRoutes = require('./routes/auth');
-app.get('/', (req, res) => {
-    res.send('Server is running');
-  });
+
 
 
 
@@ -17,7 +15,13 @@ connectDB();
 
 const app = express();
 
-app.use(cors());
+app.use(cors(
+    {
+        origin:["https://client-side-gold.vercel.app"],
+        methods:["GET","POST","PUT","DELETE"],
+        credentials:true
+    }
+));
 app.use(express.json());
 
 app.use('/api/auth', authRoutes);
